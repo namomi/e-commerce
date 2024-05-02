@@ -1,0 +1,139 @@
+
+buildscript {
+    ext {
+        springBootVersion = '3.2.4'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
+    }
+}
+
+plugins {
+    id 'checkstyle'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.zerobase'
+    version = '0.0.1-SNAPSHOT'
+
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+project(':api-core') {
+    bootJar { enabled = false }
+    jar { enabled = true }
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        runtimeOnly 'com.mysql:mysql-connector-j'
+        runtimeOnly 'com.h2database:h2'
+    }
+}
+
+project(':api-server') {
+    bootJar { enabled = true }
+    jar { enabled = false }
+
+    dependencies {
+        implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+    }
+}
+
+project(':batch-server') {
+    bootJar { enabled = true }
+    jar { enabled = false }
+
+    dependencies {
+        implementation project(':api-core')
+    }
+}
+
+project(':user') {
+    dependencies {
+        implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    }
+}
+
+project(':product') {
+    dependencies {
+        implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    }
+}
+
+project(':order') {
+    dependencies {
+        implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-batch'
+    }
+}
+
+project(':payment') {
+    dependencies {
+        implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    }
+}
+
+project(':point') {
+    dependencies {
+        implementation project(':api-core')
+    }
+}
+
+project(':coupon') {
+    dependencies {
+        implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-cache'
+        implementation 'org.springframework.kafka:spring-kafka'
+    }
+}
+
+project(':membership') {
+    dependencies {
+        implementation project(':api-core')
+    }
+}
+
+project(':auth') {
+    dependencies {
+        implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+    }
+}
+
+
+checkstyle {
+    maxWarnings = 0
+    configFile = file("${rootDir}/naver-checkstyle-rules.xml")
+    configProperties = ["suppressionFile": "${rootDir}/naver-checkstyle-suppressions.xml"]
+    toolVersion = "8.24"
+}
