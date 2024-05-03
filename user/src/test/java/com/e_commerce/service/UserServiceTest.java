@@ -1,7 +1,7 @@
 package com.e_commerce.service;
 
 import com.e_commerce.dto.UserInfo;
-import com.e_commerce.entity.Users;
+import com.e_commerce.entity.User;
 import com.e_commerce.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static com.e_commerce.constant.Role.ADMIN;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -44,7 +43,7 @@ class UserServiceTest {
         userService.save(userInfo);
 
         // then
-        verify(userRepository).save(any(Users.class));
+        verify(userRepository).save(any(User.class));
     }
 
 

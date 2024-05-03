@@ -1,6 +1,6 @@
 package com.e_commerce.service;
 
-import com.e_commerce.entity.Users;
+import com.e_commerce.entity.User;
 import com.e_commerce.jwt.UserPrincipal;
 import com.e_commerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = userRepository.findByUsername(username)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다. : " + username));
 
         return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), Collections.emptyList());

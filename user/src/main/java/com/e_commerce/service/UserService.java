@@ -1,7 +1,7 @@
 package com.e_commerce.service;
 
 import com.e_commerce.dto.UserInfo;
-import com.e_commerce.entity.Users;
+import com.e_commerce.entity.User;
 import com.e_commerce.exception.CustomException;
 import com.e_commerce.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ public class UserService {
 
 	public void save(UserInfo userInfo) {
 		validateDuplicateUser(userInfo);
-		userRepository.save(Users.toEntity(userInfo, passwordEncoder));
+		userRepository.save(User.toEntity(userInfo, passwordEncoder));
 	}
 
 	private void validateDuplicateUser(UserInfo userInfo) {
