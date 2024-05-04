@@ -49,9 +49,8 @@ public class AddressService {
 	}
 
 	private Address getAddress(Long addressId) {
-		Address address = addressRepository.findById(addressId)
+		return addressRepository.findById(addressId)
 			.orElseThrow(() -> new CustomException(NO_MATCHING_ADDRESS));
-		return address;
 	}
 
 	private boolean validateAddress(Address address) {
