@@ -49,6 +49,10 @@ public class User extends BaseEntity {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "payment_id")
+	private Payment payment;
+
 	public static User toEntity(UserInfo userInfo, PasswordEncoder passwordEncoder) {
 		return User.builder()
 			.username(userInfo.username())
@@ -60,5 +64,9 @@ public class User extends BaseEntity {
 
 	public void addAddress(Address address) {
 		this.address = address;
+	}
+
+	public void addPayment(Payment payment) {
+		this.payment = payment;
 	}
 }
