@@ -2,11 +2,10 @@ package com.e_commerce.service;
 
 import static com.e_commerce.exception.ErrorCode.*;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.e_commerce.dto.AddressInfo;
 import com.e_commerce.entity.Address;
 import com.e_commerce.entity.User;
 import com.e_commerce.exception.CustomException;
@@ -31,8 +30,9 @@ public class AddressService {
 			throw new CustomException(DUPLICATE_ADDRESS);
 	}
 
-	public Optional<Address> findAddressById(Long addressId) {
-		return addressRepository.findById(addressId);
+	public AddressInfo findAddressById(Long addressId) {
+		Address address = getAddress(addressId);
+		return new AddressInfo(address.getCountry(), address.getCity(), address.getZipCode(), address.getStreet());
 	}
 
 	@Transactional
@@ -49,7 +49,7 @@ public class AddressService {
 	}
 
 	private Address getAddress(Long addressId) {
-		Address address = findAddressById(addressId)
+		Address address = addressRepository.findById(addressId)
 			.orElseThrow(() -> new CustomException(NO_MATCHING_ADDRESS));
 		return address;
 	}

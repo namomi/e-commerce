@@ -28,9 +28,8 @@ public class AddressController {
 	}
 
 	@GetMapping("/address/{addressId}")
-	public Address findAddress(@PathVariable Long addressId) {
-		return addressService.findAddressById(addressId)
-			.orElseThrow(() -> new CustomException(NO_MATCHING_ADDRESS));
+	public AddressInfo findAddress(@PathVariable Long addressId) {
+		return addressService.findAddressById(addressId);
 	}
 
 	@DeleteMapping("/address/{addressId}")

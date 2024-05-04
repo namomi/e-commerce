@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.e_commerce.dto.AddressInfo;
 import com.e_commerce.entity.Address;
 import com.e_commerce.entity.User;
 import com.e_commerce.repository.AddressRepository;
@@ -36,7 +37,7 @@ class AddressServiceTest {
 	void setUp() {
 		MockitoAnnotations.openMocks(this);
 		address = new Address(1L, "대한민국", "서울", "12345", "강남대로");
-		user = new User(1L, "username", "password", "email@example.com", ADMIN, null);
+		user = new User(1L, "username", "password", "email@example.com", ADMIN, null, null);
 	}
 
 	@Test
@@ -60,12 +61,14 @@ class AddressServiceTest {
 		when(addressRepository.findById(addressId)).thenReturn(Optional.of(address));
 
 		// when
-		Optional<Address> foundAddress = addressService.findAddressById(addressId);
+		AddressInfo foundAddress = addressService.findAddressById(addressId);
 
 		// then
-		assertTrue(foundAddress.isPresent());
-		assertEquals(address, foundAddress.get());
 		verify(addressRepository).findById(addressId);
+		assertEquals("대한민국", foundAddress.country());
+		assertEquals("서울", foundAddress.city());
+		assertEquals("12345", foundAddress.zipCode());
+		assertEquals("강남대로", foundAddress.street());
 	}
 
 	@Test
