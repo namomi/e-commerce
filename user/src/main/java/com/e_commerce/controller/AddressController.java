@@ -22,9 +22,9 @@ public class AddressController {
 
 	private final AddressService addressService;
 
-	@PostMapping("/register/address")
-	public void registerAddress(@RequestBody AddressInfo addressInfo) {
-		addressService.addAddress(Address.toEntity(addressInfo));
+	@PostMapping("/register/{userId}/address")
+	public void registerAddress(@PathVariable Long userId, @RequestBody AddressInfo addressInfo) {
+		addressService.addAddress(userId, Address.toEntity(addressInfo));
 	}
 
 	@GetMapping("/address/{addressId}")
