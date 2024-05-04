@@ -46,8 +46,7 @@ public class CardInformationService {
 	}
 
 	private Payment getPayment(Long paymentId) {
-		Payment payment = paymentRepository.findById(paymentId)
+		return paymentRepository.findById(paymentId)
 			.orElseThrow(() -> new CustomException(DUPLICATE_PAYMENT));
-		return payment;
 	}
 }
