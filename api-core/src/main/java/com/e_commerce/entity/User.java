@@ -5,13 +5,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.e_commerce.constant.Role;
 import com.e_commerce.dto.UserInfo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,6 +45,10 @@ public class User extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
+
 	public static User toEntity(UserInfo userInfo, PasswordEncoder passwordEncoder) {
 		return User.builder()
 			.username(userInfo.username())
@@ -48,5 +56,9 @@ public class User extends BaseEntity {
 			.email(userInfo.email())
 			.role(userInfo.role())
 			.build();
+	}
+
+	public void addAddress(Address address) {
+		this.address = address;
 	}
 }
