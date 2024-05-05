@@ -39,8 +39,8 @@ public class PaymentService {
 
 	@Transactional
 	public void deletePayment(Long userId) {
-		User user = getUser(userId);
-		user.addPayment(null);
+		Payment payment = findByPayment(userId);
+		paymentRepository.delete(payment);
 	}
 
 	private Payment savedPayment(Long userId, Payment payment) {

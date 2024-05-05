@@ -41,7 +41,7 @@ class AddressServiceTest {
 	}
 
 	@Test
-	public void AddAddressSuccessTest() {
+	public void addAddressSuccessTest() {
 		// given
 		Long userId = 1L;
 		when(userRepository.findById(userId)).thenReturn(Optional.of(user));
@@ -72,7 +72,7 @@ class AddressServiceTest {
 	}
 
 	@Test
-	public void deleteSuccessTest() {
+	public void deleteAddressSuccessTest() {
 		// given
 		Long addressId = address.getId();
 		when(addressRepository.findById(addressId)).thenReturn(Optional.of(address));
