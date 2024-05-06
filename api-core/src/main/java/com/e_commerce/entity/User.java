@@ -62,11 +62,11 @@ public class User extends BaseEntity {
 			.build();
 	}
 
-	public void addAddress(Address address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
-	public void addPayment(Payment payment) {
+	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
 }

@@ -44,7 +44,7 @@ public class AddressService {
 
 	private void saveAddress(Long userId, Address address) {
 		User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(NO_MATCHING_USER));
-		user.addAddress(address);
+		user.setAddress(address);
 		addressRepository.save(address);
 	}
 

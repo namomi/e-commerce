@@ -10,4 +10,5 @@ include 'point'
 include 'coupon'
 include 'membership'
 include 'auth'
+include 'payment'
 

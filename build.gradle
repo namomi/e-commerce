@@ -101,6 +101,15 @@ project(':user') {
     }
 }
 
+project(':payment') {
+    dependencies {
+        implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    }
+}
+
 project(':product') {
     dependencies {
         implementation project(':api-core')

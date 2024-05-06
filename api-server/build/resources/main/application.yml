@@ -26,14 +26,17 @@ spring:
       host: 127.0.0.1
       port: 6379
 
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
 
 logging:
   level:
     org.springframework.security: DEBUG
 
-jwt :
-  secret : secretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKey
-  expiration : 3600000
+jwt:
+  secret: secretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKey
+  expiration: 3600000
 
 
 
@@ -62,6 +65,10 @@ spring:
       host: 127.0.0.1
       port: 6379
 
-jwt :
-  secret : secretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKey
-  expiration : 3600000
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+jwt:
+  secret: secretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKey
+  expiration: 3600000
