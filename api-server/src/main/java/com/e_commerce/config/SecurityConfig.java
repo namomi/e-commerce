@@ -48,7 +48,7 @@ public class SecurityConfig {
 			.csrf(csrf -> csrf.disable())
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers("user/register", "/h2-console/**").permitAll()
-				.requestMatchers("/register/**", "/address/**").authenticated()
+				.requestMatchers("/register/**", "/address/**", "/payment/**").authenticated()
 				.anyRequest().authenticated()
 			)
 			.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
