@@ -110,7 +110,7 @@ project(':payment') {
     }
 }
 
-project(':product') {
+project(':item') {
     dependencies {
         implementation project(':api-core')
         implementation 'org.springframework.boot:spring-boot-starter-data-rest'
