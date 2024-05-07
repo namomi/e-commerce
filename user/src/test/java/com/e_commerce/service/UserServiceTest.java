@@ -4,8 +4,6 @@ import static com.e_commerce.constant.Role.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -51,12 +49,12 @@ class UserServiceTest {
 	void deleteSuccess() throws Exception {
 		//given
 		Long userId = 1L;
-		when(userRepository.findById(userId)).thenReturn(Optional.empty());
+		doNothing().when(userRepository).deleteById(userId);
 
 		//when
 		userService.deleteUser(userId);
 
 		//then
-		verify(userRepository).findById(userId);
+		verify(userRepository).deleteById(userId);
 	}
 }

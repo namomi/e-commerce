@@ -95,6 +95,7 @@ project(':batch-server') {
 project(':user') {
     dependencies {
         implementation project(':api-core')
+        implementation project(':payment')
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.springframework.boot:spring-boot-starter-security'
         implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
