@@ -26,6 +26,11 @@ spring:
       host: 127.0.0.1
       port: 6379
 
+    elasticsearch:
+      uris: http://localhost:9200
+      username: elastic
+      password: ${ELASTICSEARCH_PASSWORD}
+
   jackson:
     serialization:
       fail-on-empty-beans: false
@@ -38,6 +43,20 @@ jwt:
   secret: secretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKeysecretKey
   expiration: 3600000
 
+
+cloud:
+  aws:
+    s3:
+      bucket: rerink
+    credentials:
+      instance-profile: true
+      access-key: ${AWS_ACCESS_KEY_ID}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
 
 
 ---

@@ -6,6 +6,8 @@ version = '0.0.1-SNAPSHOT'
 
 
 dependencies {
-
+    implementation project(':api-core')
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.10.2'
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 

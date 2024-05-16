@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,6 +32,9 @@ public class Payment extends BaseEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cardInformation_id")
 	private CardInformation cardInformation;
+
+	@OneToOne(mappedBy = "payment", fetch = FetchType.LAZY)
+	private User user;
 
 	@Enumerated(EnumType.STRING)
 	private PaymentType paymentType;

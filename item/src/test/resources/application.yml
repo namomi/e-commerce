@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: local
+    include: api-server
+
+cloud:
+  aws:
+    s3:
+      bucket: rerink
+
+
+
