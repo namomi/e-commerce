@@ -49,6 +49,7 @@ public class SecurityConfig {
 			.authorizeHttpRequests(auth -> auth
 				.requestMatchers("user/register", "/h2-console/**").permitAll()
 				.requestMatchers("/register/**", "/address/**", "/payment/**").authenticated()
+				.requestMatchers("/items/new", "/items/{itemId}", "/items/update").hasRole("PARTNER")
 				.anyRequest().authenticated()
 			)
 			.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)

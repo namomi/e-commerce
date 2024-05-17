@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate: local
+    include: api-server
+
+
+
+
+---
+spring:
+  config:
+    activate: dev
+    include: api-server
+

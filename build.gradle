@@ -67,6 +67,7 @@ project(':api-core') {
         implementation 'org.springframework.boot:spring-boot-starter-validation'
         runtimeOnly 'com.mysql:mysql-connector-j'
         runtimeOnly 'com.h2database:h2'
+        implementation 'org.modelmapper:modelmapper:3.2.0'
     }
 }
 
@@ -77,9 +78,11 @@ project(':api-server') {
     dependencies {
         implementation project(':api-core')
         implementation project(':user')
+        implementation project(':payment')
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-data-redis'
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.10.2'
     }
 }
 
@@ -114,6 +117,8 @@ project(':payment') {
 project(':item') {
     dependencies {
         implementation project(':api-core')
+        implementation project(':api-server')
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     }
 }
@@ -122,13 +127,6 @@ project(':order') {
     dependencies {
         implementation project(':api-core')
         implementation 'org.springframework.boot:spring-boot-starter-batch'
-    }
-}
-
-project(':payment') {
-    dependencies {
-        implementation project(':api-core')
-        implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     }
 }
 
