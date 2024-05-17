@@ -7,6 +7,7 @@ public record ErrorCode(int status, String message) {
     public static final ErrorCode INVALID_OR_INACTIVE_TOKEN = new ErrorCode(403, "Invalid or inactive token.");
     public static final ErrorCode NOT_AUTHORIZED = new ErrorCode(403, "You do not have permission.");
     public static final ErrorCode NO_MATCHING_USER = new ErrorCode(403, "No matching user");
+    public static final ErrorCode NO_MATCHING_ITEM = new ErrorCode(403, "No matching item");
     public static final ErrorCode NO_MATCHING_ADDRESS = new ErrorCode(403, "No matching addresses");
     public static final ErrorCode DUPLICATE_ADDRESS = new ErrorCode(403, "Duplicate address.");
     public static final ErrorCode DUPLICATE_PAYMENT = new ErrorCode(403, "Duplicate payment.");
@@ -18,4 +19,6 @@ public record ErrorCode(int status, String message) {
     public static final ErrorCode ERROR_UPDATE_ITEM = new ErrorCode(403, "Error updating item.");
     public static final ErrorCode SEARCH_PHRASE_ANALYSIS_FAILED = new ErrorCode(403, "Failed to parse search results.");
     public static final ErrorCode URL_CREATION_FAILED = new ErrorCode(403, "Failed to generate URL for the uploaded image.");
+    public static final ErrorCode OUT_OF_STOCK = new ErrorCode(403, "The goods are out of stock.");
+    public static final ErrorCode NO_REVOCATION_OF_ORDER = new ErrorCode(403, "You do not have permission to cancel your order.");
 }
