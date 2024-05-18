@@ -11,4 +11,5 @@ include 'coupon'
 include 'membership'
 include 'auth'
 include 'payment'
+include 'cart'
 

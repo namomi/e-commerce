@@ -51,8 +51,8 @@ class OrderServiceTest {
 
     @BeforeEach
     void setUp() {
-        item = new Item(1L, "Test Item", 100, 10, "test", ProductStatus.NEW, ItemSellStatus.SELL); // 가상의 Item 객체 생성
-        user = new User(1L, "testUser", "password", "testUser@example.com", null, null, null); // 가상의 User 객체 생성
+        item = new Item(1L, "Test Item", 100, 10, "test", ProductStatus.NEW, ItemSellStatus.SELL);
+        user = new User(1L, "testUser", "password", "testUser@example.com", null, null, null);
         orderItem = new OrderItem();
         orderItem.setId(1L);
         orderItem.setItem(item);

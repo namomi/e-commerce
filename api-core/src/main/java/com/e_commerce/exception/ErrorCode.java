@@ -8,6 +8,8 @@ public record ErrorCode(int status, String message) {
     public static final ErrorCode NOT_AUTHORIZED = new ErrorCode(403, "You do not have permission.");
     public static final ErrorCode NO_MATCHING_USER = new ErrorCode(403, "No matching user");
     public static final ErrorCode NO_MATCHING_ITEM = new ErrorCode(403, "No matching item");
+    public static final ErrorCode NO_MATCHING_CARTORDER = new ErrorCode(403, "No matching cartOrder");
+    public static final ErrorCode NO_MATCHING_CARTITEM = new ErrorCode(403, "No matching cartItem");
     public static final ErrorCode NO_MATCHING_ADDRESS = new ErrorCode(403, "No matching addresses");
     public static final ErrorCode DUPLICATE_ADDRESS = new ErrorCode(403, "Duplicate address.");
     public static final ErrorCode DUPLICATE_PAYMENT = new ErrorCode(403, "Duplicate payment.");
@@ -21,4 +23,8 @@ public record ErrorCode(int status, String message) {
     public static final ErrorCode URL_CREATION_FAILED = new ErrorCode(403, "Failed to generate URL for the uploaded image.");
     public static final ErrorCode OUT_OF_STOCK = new ErrorCode(403, "The goods are out of stock.");
     public static final ErrorCode NO_REVOCATION_OF_ORDER = new ErrorCode(403, "You do not have permission to cancel your order.");
+    public static final ErrorCode SHOPPING_BASKET_ERROR = new ErrorCode(400, "Can't be stored in your shopping cart.");
+    public static final ErrorCode SEARCH_HEAT_MAPPING_FAILED = new ErrorCode(400, "Failed to map search hit to CartItem.");
+    public static final ErrorCode NO_PRODUCT_SELECTION = new ErrorCode(400, "Please select the product to order.");
+    public static final ErrorCode NOT_AUTHORIZED_TO_ORDER = new ErrorCode(400, "You do not have permission to order.");
 }
