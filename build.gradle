@@ -64,6 +64,7 @@ project(':api-core') {
 
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-data-redis'
         implementation 'org.springframework.boot:spring-boot-starter-validation'
         runtimeOnly 'com.mysql:mysql-connector-j'
         runtimeOnly 'com.h2database:h2'
@@ -155,6 +156,9 @@ project(':point') {
 project(':coupon') {
     dependencies {
         implementation project(':api-core')
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
         implementation 'org.springframework.boot:spring-boot-starter-cache'
         implementation 'org.springframework.kafka:spring-kafka'
     }
