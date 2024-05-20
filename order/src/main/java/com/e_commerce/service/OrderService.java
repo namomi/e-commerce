@@ -38,8 +38,7 @@ public class OrderService {
     public void order(OrderInfo orderInfo, String username) {
         Item item = itemRepository.findById(orderInfo.getItemId())
                 .orElseThrow(() -> new CustomException(NO_MATCHING_ITEM));
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new CustomException(NO_MATCHING_USER));
+        User user = getUser(username);
 
         List<OrderItem> orderItemList = new ArrayList<>();
         OrderItem orderItem = OrderItem.createItem(item, orderInfo.getCount());
@@ -78,8 +77,7 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public boolean validateOrder(Long orderId, String username) {
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new CustomException(NO_MATCHING_USER));
+        User user = getUser(username);
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new CustomException(NO_MATCHING_ITEM));
         User savedUser = order.getUser();
@@ -88,5 +86,29 @@ public class OrderService {
             return false;
         }
         return true;
+    }
+
+
+    public void orders(List<OrderInfo> orderInfoList, String username) {
+        User user = getUser(username);
+        List<OrderItem> orderItemList = new ArrayList<>();
+
+        for (OrderInfo orderInfo : orderInfoList) {
+            Item item = itemRepository.findById(orderInfo.getItemId())
+                    .orElseThrow(() -> new CustomException(NO_MATCHING_ITEM));
+
+            OrderItem orderItem = OrderItem.createItem(item, orderInfo.getCount());
+            orderItemList.add(orderItem);
+        }
+
+        Order order = Order.createOrder(user, orderItemList);
+        orderRepository.save(order);
+
+    }
+
+    private User getUser(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new CustomException(NO_MATCHING_USER));
+        return user;
     }
 }

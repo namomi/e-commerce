@@ -1,0 +1,12 @@
+plugins {
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+
+
+dependencies {
+    implementation project(':api-core')
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.10.2'
+}
+
