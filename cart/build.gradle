@@ -1,12 +1,19 @@
 plugins {
+    id 'java'
 }
 
 group = 'org.example'
-version = '0.0.1-SNAPSHOT'
+version = 'unspecified'
 
-
-dependencies {
-    implementation project(':api-core')
-    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.10.2'
+repositories {
+    mavenCentral()
 }
 
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
