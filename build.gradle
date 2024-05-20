@@ -40,6 +40,7 @@ subprojects {
         annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
         annotationProcessor "jakarta.annotation:jakarta.annotation-api"
         annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+        implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
     }
 
     test {
@@ -83,10 +84,12 @@ project(':api-server') {
         implementation project(':item')
         implementation project(':order')
         implementation project(':cart')
+        implementation project(':coupon')
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-data-redis'
         implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
         implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.10.2'
+
     }
 }
 
